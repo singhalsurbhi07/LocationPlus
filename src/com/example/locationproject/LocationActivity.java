@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import com.example.locationproject.services.ResponseFileService;
 import com.example.locationproject.utils.ExternalStorageUtil;
 
@@ -106,5 +107,10 @@ public class LocationActivity extends Activity {
 		
 		
 	  }
+	
+	public void onWiFiConnect(MenuItem mi){
+		Intent i = new Intent(this,com.example.locationproject.wifidirect.WiFiDirectActivity.class);
+		startActivity(i);
+	}
 	
 }

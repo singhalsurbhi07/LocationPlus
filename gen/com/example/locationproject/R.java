@@ -416,8 +416,8 @@ containing a value of this type.
         public static final int TextView02=0x7f07001a;
         public static final int TextView03=0x7f07001c;
         public static final int TextView04=0x7f07001d;
-        public static final int atn_direct_discover=0x7f070031;
-        public static final int atn_direct_enable=0x7f070030;
+        public static final int atn_direct_discover=0x7f070032;
+        public static final int atn_direct_enable=0x7f070031;
         public static final int book_now=0x7f070010;
         public static final int btnGetK=0x7f070014;
         public static final int btn_connect=0x7f07001f;
@@ -445,6 +445,7 @@ containing a value of this type.
         public static final int linearLayout2=0x7f07001b;
         public static final int mAddress=0x7f07001e;
         public static final int match_parent=0x7f07000c;
+        public static final int miWifi=0x7f070030;
         public static final int monochrome=0x7f070013;
         public static final int my_name=0x7f070029;
         public static final int my_status=0x7f07002a;

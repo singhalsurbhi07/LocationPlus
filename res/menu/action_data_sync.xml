@@ -7,5 +7,14 @@
         android:onClick="onDataSync"
         android:showAsAction="ifRoom|withText" />
     
+    <item
+        android:id="@+id/miWifi"
+        android:icon="@drawable/ic_launcher"
+        android:onClick="onWiFiConnect"
+        android:showAsAction="always"
+        android:title="WiFi">
+    </item>
+    
+    
 
 </menu>
