@@ -1,8 +1,10 @@
 package com.example.locationproject;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.json.JSONException;
 
@@ -106,5 +108,58 @@ public class MySQLiteHelperGeo extends SQLiteOpenHelper {
 	
 	public static String getCurrentTimeStamp(){
 		return Long.toString(new Date().getTime());
+	}
+	
+	static final String[] cities = {"San Jose", "San Francisco", "Mountain View", "Reno", 
+		"Fremont", "San Diego", "Los Angeles", 
+		"Camden", "Berkley", "Palo Alto", "Sunnyvale", "Redwood City", "Menlo Park", "Los Altos",  
+		"Sunnyvale", "San Bruno", "San Mateo", "Los Gatos", "Saratoga", "Santa Clara", "Cupertino", "Milbrae"};
+
+
+
+	private double latlong() {
+
+		Random r = new Random();
+		double randomValue = 1.1 + (300.0 - 1.1) * r.nextDouble();
+		return randomValue;
+	}
+
+	private String timeGen() {
+
+		long offset = Timestamp.valueOf("2014-11-01 00:00:00").getTime();
+		long end = Timestamp.valueOf("2014-12-04 00:00:00").getTime();
+		long diff = end - offset + 1;
+
+		Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+		return rand.toString();
+	}
+
+	public void insertRows() {
+		long startTime = System.currentTimeMillis();
+
+		for (int i = 0; i < 1000; ++i) {
+			String insertRow = " Insert into LOCATION_DATA values('" + timeGen() + "', " + latlong() + ", " + latlong() 
+					+ ", '" + cities[i % cities.length] + "' );";
+			addLocationRow(timeGen(), latlong(), latlong(), cities[i % cities.length]);
+
+		}
+	}
+	
+	public void addLocationRow(String timestamp, double lat, double longitude, String city ) {
+
+		// Open database connection
+		SQLiteDatabase db = this.getWritableDatabase();
+		// Define values for each field
+		ContentValues values = new ContentValues();
+
+		values.put(COLUMN_ID, timestamp);
+		values.put(COLUMN_LATITUDE, lat);
+		values.put(COLUMN_LONGITUDE, longitude);
+		values.put(COLUMN_ADDRESS, city); 
+
+		// Insert Row
+		long rowId=db.insert(TBL_LOCATION, null, values);
+
+		db.close(); 
 	}
 }

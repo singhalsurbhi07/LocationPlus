@@ -416,8 +416,8 @@ containing a value of this type.
         public static final int TextView02=0x7f07001a;
         public static final int TextView03=0x7f07001c;
         public static final int TextView04=0x7f07001d;
-        public static final int atn_direct_discover=0x7f070030;
-        public static final int atn_direct_enable=0x7f07002f;
+        public static final int atn_direct_discover=0x7f070031;
+        public static final int atn_direct_enable=0x7f070030;
         public static final int book_now=0x7f070010;
         public static final int btnGetK=0x7f070014;
         public static final int btn_connect=0x7f07001f;
@@ -450,6 +450,7 @@ containing a value of this type.
         public static final int my_status=0x7f07002a;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
+        public static final int on_data_sync=0x7f07002f;
         public static final int production=0x7f070007;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
@@ -475,7 +476,8 @@ containing a value of this type.
         public static final int row_devices=0x7f030006;
     }
     public static final class menu {
-        public static final int action_items=0x7f0a0000;
+        public static final int action_data_sync=0x7f0a0000;
+        public static final int action_items=0x7f0a0001;
     }
     public static final class string {
         public static final int accept=0x7f050002;

@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.Preference;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -88,5 +89,22 @@ public class LocationActivity extends Activity {
 		
 		
 	}
+	
+	public void onSyncAction(MenuItem mi) {
+	     // handle click here
+		Log.d("UserActivity","OnSyncAction");
+//		ApiCallHelper helper = new ApiCallHelper();
+//		String date = DateUtil.getYesterdayDateString();
+//		helper.getUserWaterData(date);
+//		helper.getUserSleepData(date);
+//		helper.getUserFoodData(date);
+//		helper.getUserActivitiesData(date);
+		MySQLiteHelperGeo sqlHelper = new MySQLiteHelperGeo(this.getApplicationContext());
+		sqlHelper.insertRows();
+		
+		
+		
+		
+	  }
 	
 }

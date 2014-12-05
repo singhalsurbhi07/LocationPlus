@@ -104,8 +104,8 @@ int id TextView01 0x7f070019
 int id TextView02 0x7f07001a
 int id TextView03 0x7f07001c
 int id TextView04 0x7f07001d
-int id atn_direct_discover 0x7f070030
-int id atn_direct_enable 0x7f07002f
+int id atn_direct_discover 0x7f070031
+int id atn_direct_enable 0x7f070030
 int id book_now 0x7f070010
 int id btnGetK 0x7f070014
 int id btn_connect 0x7f07001f
@@ -138,6 +138,7 @@ int id my_name 0x7f070029
 int id my_status 0x7f07002a
 int id none 0x7f070000
 int id normal 0x7f070001
+int id on_data_sync 0x7f07002f
 int id production 0x7f070007
 int id sandbox 0x7f070008
 int id satellite 0x7f070002
@@ -157,7 +158,8 @@ int layout device_detail 0x7f030003
 int layout device_list 0x7f030004
 int layout main 0x7f030005
 int layout row_devices 0x7f030006
-int menu action_items 0x7f0a0000
+int menu action_data_sync 0x7f0a0000
+int menu action_items 0x7f0a0001
 int string accept 0x7f050002
 int string app_name 0x7f050023
 int string common_android_wear_notification_needs_update_text 0x7f050009

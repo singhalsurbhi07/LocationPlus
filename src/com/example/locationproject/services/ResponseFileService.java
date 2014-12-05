@@ -44,13 +44,13 @@ public class ResponseFileService extends IntentService {
 
 	}
 		stopSelf();
-		Log.d(TAG,"Response File service stopped, going tp CumulativeResponseActivity");
-		Intent i  = new Intent(this, CumulativeResponseActivity.class);
-		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		Bundle bundle = new Bundle();  
-		bundle.putSerializable("allResponse", (Serializable) allResponse);
-		i.putExtras(bundle);
-		startActivity(i);
+//		Log.d(TAG,"Response File service stopped, going tp CumulativeResponseActivity");
+//		Intent i  = new Intent(this, CumulativeResponseActivity.class);
+//		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//		Bundle bundle = new Bundle();  
+//		bundle.putSerializable("allResponse", (Serializable) allResponse);
+//		i.putExtras(bundle);
+//		startActivity(i);
 	}
 	
 	private boolean  traverseResponse(String dirString){
