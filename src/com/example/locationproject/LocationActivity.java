@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 import com.example.locationproject.services.ResponseFileService;
 import com.example.locationproject.utils.ExternalStorageUtil;
 
@@ -19,6 +20,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.Preference;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -76,6 +78,7 @@ public class LocationActivity extends Activity {
 	
 	public void getKTopLocations(View v){
 		int kVal = Integer.parseInt(k.getText().toString());
+		Log.d(TAG,"value of k = "+kVal);
 		String query = getQuery(kVal);
 		util.writeRequestToDownloads(query, sharedpreferences.getString("deviceName", "master"));
 		String uri = "file://"+Environment.getExternalStoragePublicDirectory(
@@ -91,7 +94,7 @@ public class LocationActivity extends Activity {
 		
 	}
 	
-	public void onSyncAction(MenuItem mi) {
+	public void onDataSync(MenuItem mi) {
 	     // handle click here
 		Log.d("UserActivity","OnSyncAction");
 //		ApiCallHelper helper = new ApiCallHelper();
@@ -107,6 +110,13 @@ public class LocationActivity extends Activity {
 		
 		
 	  }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.action_data_sync, menu);
+		return true;
+	}
 	
 	public void onWiFiConnect(MenuItem mi){
 		Intent i = new Intent(this,com.example.locationproject.wifidirect.WiFiDirectActivity.class);

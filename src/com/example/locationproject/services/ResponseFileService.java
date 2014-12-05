@@ -104,12 +104,12 @@ public class ResponseFileService extends IntentService {
 					
 				}
 			}
-			for (int i = 0; children != null && i < children.length; i++) {
-				File f = new File(dir, children[i]);
-				Log.d(TAG,"need to delete "+f.getName());
-
-				f.delete();
-			}
+//			for (int i = 0; children != null && i < children.length; i++) {
+//				File f = new File(dir, children[i]);
+//				Log.d(TAG,"need to delete "+f.getName());
+//
+//				f.delete();
+//			}
 			
 			return true;
 		}
