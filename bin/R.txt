@@ -211,6 +211,7 @@ int string store_picture_message 0x7f050001
 int string store_picture_title 0x7f050000
 int string title_activity_location 0x7f050026
 int string title_activity_show_location 0x7f050025
+int string title_activity_wifidirect 0x7f050034
 int string wallet_buy_button_place_holder 0x7f050022
 int string yes 0x7f05002d
 int style AppBaseTheme 0x7f040005

@@ -18,6 +18,7 @@
     <string name="label_peers">PEERS</string>
     <string name="empty_message">No devices found. Turn on P2P and perform discovery from the Action Bar</string>
     <string name="p2p_off_warning">Enable P2P from action bar button above or system settings</string>
+    <string name="title_activity_wifidirect">WifiDirect</string>
     
 
 </resources>

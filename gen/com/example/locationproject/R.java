@@ -602,6 +602,7 @@ containing a value of this type.
         public static final int store_picture_title=0x7f050000;
         public static final int title_activity_location=0x7f050026;
         public static final int title_activity_show_location=0x7f050025;
+        public static final int title_activity_wifidirect=0x7f050034;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
