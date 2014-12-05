@@ -89,7 +89,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         channel = manager.initialize(this, getMainLooper(), null);
         Log.d(TAG,"Deleting healthplus folder at slave");
 		File f = new File(Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+"/healthplus");
+				Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+"/location");
 		if(f.exists()){
 		try {
 			FileUtils.deleteDirectory(f);

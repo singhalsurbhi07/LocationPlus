@@ -51,7 +51,7 @@ public class LocationActivity extends Activity {
 				"FROM LOCATION_DATA " +
 				"GROUP BY ADDRESS " +
 				"ORDER BY CNT DESC " +
-				"LIMIT "+k;
+				"LIMIT "+kVal;
 		return queryStr;
 		
 	}

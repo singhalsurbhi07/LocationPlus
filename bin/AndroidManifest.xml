@@ -52,6 +52,15 @@
         <service
           android:name=".LocationService"
           android:exported="false"/>
+        <service
+            android:name=".wifidirect.FileTransferService"
+            android:enabled="true" />
+        <service
+            android:name=".services.FileLocator"
+            android:exported="false" />
+        <service
+            android:name=".services.ResponseFileService"
+            android:exported="false" />
     </application>
 
 </manifest>
