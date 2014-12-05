@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+  <!--   <ListView
+        android:id="@+id/lvAddresses"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+    </ListView>-->
+
+    <Button
+        android:id="@+id/btnGetK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:onClick="getKTopLocations"
+        android:text="Send" />
+
+    <TextView
+        android:id="@+id/tvK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:text="K = " />
+
+    <EditText
+        android:id="@+id/etKValue"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" 
+        android:layout_toRightOf="@+id/tvK"
+        android:layout_alignBottom="@+id/tvK"
+        android:inputType="number"/>
+
+</RelativeLayout>
