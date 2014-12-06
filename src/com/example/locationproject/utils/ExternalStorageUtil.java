@@ -25,13 +25,14 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.example.locationproject.MySQLiteHelperGeo;
+import com.example.locationproject.StaticReferenceDB;
 import com.example.locationproject.datamodel.Response;
 
 public class ExternalStorageUtil extends Activity  {
 
 	private static String TAG = "ExternalStorageUtil";
 	private static SharedPreferences sharedpreferences;
-	MySQLiteHelperGeo sqlHelper = new MySQLiteHelperGeo(getBaseContext());
+	//MySQLiteHelperGeo sqlHelper = new MySQLiteHelperGeo(this);
 	//private static String responseDataType;
 
 	public static boolean isExternalStorageWritable() {
@@ -203,10 +204,10 @@ public class ExternalStorageUtil extends Activity  {
 					JSONObject jsonObj = new JSONObject(outputString.toString());
 					Log.d("ExternalStorage read", jsonObj.getString("query"));
 
-					SQLiteDatabase db = sqlHelper.getReadableDatabase();
+					//SQLiteDatabase db = StaticReferenceDB.sqlHelper.getReadableDatabase();
 					
 
-					Map<String,Integer> result =  sqlHelper.getKAddressList(jsonObj.getString("query"));
+					Map<String,Integer> result =  StaticReferenceDB.sqlHelper.getKAddressList(jsonObj.getString("query"));
 					File file = new File(path);
 					boolean deleted = file.delete();
 					Log.d("File", "Request file deleted!!");

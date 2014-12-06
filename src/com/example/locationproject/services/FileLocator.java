@@ -32,6 +32,7 @@ public class FileLocator extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+		Log.d(TAG,"inside FileLocator onHandle");
 
 		sharedpreferences = 
 				getSharedPreferences("APP_PREF", Context.MODE_PRIVATE);

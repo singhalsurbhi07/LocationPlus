@@ -100,6 +100,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 		}else{
 			Log.d("WifiDirectActivity","downloads folder for slave is empty");
 		}
+		Log.d("WifiDirectACtivity","calling FileLocatoe service");
         Intent i = new Intent(this, FileLocator.class);
         // Add extras to the bundle
         //i.putExtra("foo", "bar");

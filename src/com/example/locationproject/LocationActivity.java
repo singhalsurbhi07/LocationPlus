@@ -58,6 +58,7 @@ public class LocationActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		StaticReferenceDB.sqlHelper = new MySQLiteHelperGeo(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
 		sharedpreferences = getSharedPreferences("APP_PREF", Context.MODE_PRIVATE);

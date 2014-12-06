@@ -33,7 +33,7 @@ public class MySQLiteHelperGeo extends SQLiteOpenHelper {
 			+ COLUMN_LATITUDE + " REAL DEFAULT 0.0 , " 
 			+ COLUMN_LONGITUDE + " REAL DEFAULT 0.0 , " 
 			+ COLUMN_ADDRESS + " TEXT DEFAULT NULL );"	;
-
+private static SQLiteDatabase db= null;
 	public MySQLiteHelperGeo(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -73,7 +73,7 @@ public class MySQLiteHelperGeo extends SQLiteOpenHelper {
 	
 	public Map<String, Integer> getKAddressList(String queryStr) {
 
-		SQLiteDatabase db = this.getReadableDatabase();
+		db = this.getReadableDatabase();
 		Map<String, Integer> addressMap = new HashMap<String, Integer>();
 		System.out.println("I came here 1");
 		
@@ -136,13 +136,37 @@ public class MySQLiteHelperGeo extends SQLiteOpenHelper {
 
 	public void insertRows() {
 		long startTime = System.currentTimeMillis();
+		
+		String timeStamp = null;
+		double lat = 0.0, longitude = 0.0;
+		String city = null;
 
+		db = this.getWritableDatabase();
 		for (int i = 0; i < 1000; ++i) {
-			String insertRow = " Insert into LOCATION_DATA values('" + timeGen() + "', " + latlong() + ", " + latlong() 
-					+ ", '" + cities[i % cities.length] + "' );";
-			addLocationRow(timeGen(), latlong(), latlong(), cities[i % cities.length]);
+			/*String insertRow = " Insert into LOCATION_DATA values('" + timeGen() + "', " + latlong() + ", " + latlong() 
+					+ ", '" + cities[i % cities.length] + "' );";*/
+			
+			timeStamp = timeGen();
+			lat = latlong();
+			longitude = latlong();
+			city = cities[i % cities.length];
+			
+			Log.d("MySQLiteHelper ", "insertRows:: time: " + timeStamp + " lat: " +lat + " longitude: "+ longitude + " city: "+ city );
 
+			// Define values for each field
+			ContentValues values = new ContentValues();
+
+			values.put(COLUMN_ID, timeStamp);
+			values.put(COLUMN_LATITUDE, lat);
+			values.put(COLUMN_LONGITUDE, longitude);
+			values.put(COLUMN_ADDRESS, city); 
+
+			// Insert Row
+			long rowId=db.insert(TBL_LOCATION, null, values);
+			
 		}
+		
+		db.close(); 
 	}
 	
 	public void addLocationRow(String timestamp, double lat, double longitude, String city ) {
