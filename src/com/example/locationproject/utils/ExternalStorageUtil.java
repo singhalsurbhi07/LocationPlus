@@ -112,14 +112,14 @@ public class ExternalStorageUtil extends Activity  {
 	  method reads in all lines of the file sequentially. */
 
 	public void writeResponseFileToDownloads(Map<String,Integer> resultVal,String deviceName) {
-		List l = new LinkedList<>();
+		JSONArray l = new JSONArray();
 		for(java.util.Map.Entry<String, Integer> e : resultVal.entrySet()){
-			Log.d(TAG,e.getKey()+"-->"+e.getValue());
+			Log.d(TAG,e.getKey()+"-->"+e.getKey()+" " +e.getValue());
 			JSONObject tempObj = new JSONObject();
 			try {
 				tempObj.put("address", e.getKey());
 				tempObj.put("frequency", e.getValue());
-				l.add(tempObj);
+				l.put(tempObj);
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -127,6 +127,7 @@ public class ExternalStorageUtil extends Activity  {
 			
 			
 		}
+		Log.d(TAG,l.toString());
 
 		if(isExternalStorageWritable()){
 
@@ -134,10 +135,12 @@ public class ExternalStorageUtil extends Activity  {
 			try {
 				obj.put("deviceName", deviceName);
 				obj.put("result", l);
+				Log.d(TAG,obj.getString(obj.toString()));
 				
 			} catch (JSONException e1) {
 				e1.printStackTrace();
 			}
+			Log.d(TAG+"finalObject",obj.toString());
 			/*File file = new File(Environment.getExternalStoragePublicDirectory(
 					Environment.DIRECTORY_DOWNLOADS), "healthplus");
 			if (!file.mkdirs()) {
@@ -250,12 +253,13 @@ public class ExternalStorageUtil extends Activity  {
 
 					JSONObject respJSONObj = new JSONObject(respString.toString());
 					JSONArray addressArray = respJSONObj.getJSONArray("result");
+					Log.d(TAG,addressArray.toString());
 					Map<String,Integer> resultAddressMap = createHashMap(addressArray);
 					Log.d(TAG,"addressArrar = "+addressArray.toString());
 					userRes = new Response(respJSONObj.getString("deviceName"),resultAddressMap);
 					
 
-					Log.d(TAG , "Response " + respJSONObj.getString("userName"));
+					//Log.d(TAG , "Response " + respJSONObj.getString("userName"));
 					//Log.d("readFile ", " Response " + respJSONObj.getString("type"));
 					Log.d(TAG, " Response " + respJSONObj.getString("result"));
 				

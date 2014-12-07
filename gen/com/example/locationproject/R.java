@@ -416,8 +416,8 @@ containing a value of this type.
         public static final int TextView02=0x7f07001a;
         public static final int TextView03=0x7f07001c;
         public static final int TextView04=0x7f07001d;
-        public static final int atn_direct_discover=0x7f070032;
-        public static final int atn_direct_enable=0x7f070031;
+        public static final int atn_direct_discover=0x7f070033;
+        public static final int atn_direct_enable=0x7f070032;
         public static final int book_now=0x7f070010;
         public static final int btnGetK=0x7f070014;
         public static final int btn_connect=0x7f07001f;
@@ -428,9 +428,9 @@ containing a value of this type.
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
         public static final int device_address=0x7f070022;
-        public static final int device_details=0x7f07002e;
+        public static final int device_details=0x7f07002f;
         public static final int device_info=0x7f070023;
-        public static final int device_name=0x7f07002d;
+        public static final int device_name=0x7f07002e;
         public static final int etKValue=0x7f070016;
         public static final int frag_detail=0x7f07002c;
         public static final int frag_list=0x7f07002b;
@@ -444,14 +444,15 @@ containing a value of this type.
         public static final int linearLayout1=0x7f070018;
         public static final int linearLayout2=0x7f07001b;
         public static final int mAddress=0x7f07001e;
+        public static final int map=0x7f07002d;
         public static final int match_parent=0x7f07000c;
-        public static final int miWifi=0x7f070030;
+        public static final int miWifi=0x7f070031;
         public static final int monochrome=0x7f070013;
         public static final int my_name=0x7f070029;
         public static final int my_status=0x7f07002a;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
-        public static final int on_data_sync=0x7f07002f;
+        public static final int on_data_sync=0x7f070030;
         public static final int production=0x7f070007;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
@@ -474,7 +475,8 @@ containing a value of this type.
         public static final int device_detail=0x7f030003;
         public static final int device_list=0x7f030004;
         public static final int main=0x7f030005;
-        public static final int row_devices=0x7f030006;
+        public static final int map_demo_activity=0x7f030006;
+        public static final int row_devices=0x7f030007;
     }
     public static final class menu {
         public static final int action_data_sync=0x7f0a0000;
@@ -596,6 +598,7 @@ containing a value of this type.
         public static final int hello_world=0x7f050024;
         public static final int label_me=0x7f050030;
         public static final int label_peers=0x7f050031;
+        public static final int menu_settings=0x7f050035;
         public static final int no=0x7f05002e;
         public static final int p2p_off_warning=0x7f050033;
         public static final int store_picture_message=0x7f050001;

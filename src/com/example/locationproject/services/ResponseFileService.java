@@ -1,18 +1,19 @@
 package com.example.locationproject.services;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
 import com.example.locationproject.datamodel.Response;
+import com.example.locationproject.maps.MapDemoActivity;
 import com.example.locationproject.utils.ExternalStorageUtil;
 
 
@@ -44,6 +45,9 @@ public class ResponseFileService extends IntentService {
 
 	}
 		stopSelf();
+		Intent i = new Intent(this,MapDemoActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(i);
 //		Log.d(TAG,"Response File service stopped, going tp CumulativeResponseActivity");
 //		Intent i  = new Intent(this, CumulativeResponseActivity.class);
 //		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -102,6 +106,12 @@ public class ResponseFileService extends IntentService {
 						
 						
 					
+				}
+			}
+			for(Response res :allResponse){
+				Map<String,Integer> resMap = res.getAddressMap();
+				for(Entry e:resMap.entrySet()){
+					Log.d(TAG,e.getKey()+" "+e.getValue());
 				}
 			}
 //			for (int i = 0; children != null && i < children.length; i++) {
