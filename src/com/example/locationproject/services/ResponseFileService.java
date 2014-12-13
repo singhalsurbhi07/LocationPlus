@@ -1,6 +1,7 @@
 package com.example.locationproject.services;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,16 @@ import java.util.regex.Pattern;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.locationproject.datamodel.LongLatModel;
 import com.example.locationproject.datamodel.Response;
 import com.example.locationproject.maps.MapDemoActivity;
+import com.example.locationproject.utils.AddressConverter;
 import com.example.locationproject.utils.ExternalStorageUtil;
+import com.example.locationproject.utils.TopKFinder;
 
 
 
@@ -25,6 +30,7 @@ public class ResponseFileService extends IntentService {
 	String resPattern = Environment.getExternalStorageDirectory().getAbsolutePath()+"/ShareViaWifi/locationResponse??.txt";
 	ExternalStorageUtil util = new ExternalStorageUtil();
 	List<Response> allResponse ;
+	List<LongLatModel> listOfGeo;
 
 	public ResponseFileService() {
 		// Used to name the worker thread, important only for debugging.
@@ -46,6 +52,9 @@ public class ResponseFileService extends IntentService {
 	}
 		stopSelf();
 		Intent i = new Intent(this,MapDemoActivity.class);
+		Bundle b = new Bundle();
+		b.putSerializable("geoLocationList", (Serializable) listOfGeo);
+		i.putExtras(b);
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(i);
 //		Log.d(TAG,"Response File service stopped, going tp CumulativeResponseActivity");
@@ -108,18 +117,24 @@ public class ResponseFileService extends IntentService {
 					
 				}
 			}
-			for(Response res :allResponse){
-				Map<String,Integer> resMap = res.getAddressMap();
-				for(Entry e:resMap.entrySet()){
-					Log.d(TAG,e.getKey()+" "+e.getValue());
+			String[] areas = TopKFinder.getTopK(allResponse);
+			
+			listOfGeo = new ArrayList<>();
+			
+			for(String areaName :areas){
+				if(areaName != null){
+				Log.d(TAG+" areas",areaName);
+				String googleAPIrep = AddressConverter.convertToLongLat(areaName);
+				LongLatModel model = new LongLatModel(googleAPIrep,areaName);
+				listOfGeo.add(model);
 				}
 			}
-//			for (int i = 0; children != null && i < children.length; i++) {
-//				File f = new File(dir, children[i]);
-//				Log.d(TAG,"need to delete "+f.getName());
-//
-//				f.delete();
-//			}
+			for (int i = 0; children != null && i < children.length; i++) {
+				File f = new File(dir, children[i]);
+				Log.d(TAG,"need to delete "+f.getName());
+
+				f.delete();
+			}
 			
 			return true;
 		}

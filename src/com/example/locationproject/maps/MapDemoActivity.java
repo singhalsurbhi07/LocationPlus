@@ -1,5 +1,7 @@
 package com.example.locationproject.maps;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,23 +14,25 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.locationproject.R;
+import com.example.locationproject.datamodel.LongLatModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapDemoActivity extends FragmentActivity implements
-		GooglePlayServicesClient.ConnectionCallbacks,
-		GooglePlayServicesClient.OnConnectionFailedListener {
+GooglePlayServicesClient.ConnectionCallbacks,
+GooglePlayServicesClient.OnConnectionFailedListener {
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap map;
 	private LocationClient mLocationClient;
+	private List<LongLatModel> model;
 	/*
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
@@ -39,6 +43,9 @@ public class MapDemoActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_demo_activity);
+		Bundle b = getIntent().getExtras();
+		model = (List<LongLatModel>) b.getSerializable("geoLocationList");
+
 		mLocationClient = new LocationClient(this, this, this);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		if (mapFragment != null) {
@@ -46,6 +53,7 @@ public class MapDemoActivity extends FragmentActivity implements
 			if (map != null) {
 				Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
 				map.setMyLocationEnabled(true);
+				//drawMarker();
 			} else {
 				Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
 			}
@@ -131,16 +139,30 @@ public class MapDemoActivity extends FragmentActivity implements
 	 */
 	@Override
 	public void onConnected(Bundle dataBundle) {
+
 		// Display the connection status
 		Location location = mLocationClient.getLastLocation();
-		if (location != null) {
-			Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
-			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
-			map.animateCamera(cameraUpdate);
-		} else {
-			Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
-		}
+		
+			if (location != null) {
+				Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
+				drawMarker();
+//				LatLng latLng = new LatLng(Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()));
+//				BitmapDescriptor defaultMarker =
+//					    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+//					// listingPosition is a LatLng point
+//					Marker mapMarker = mapFragment.addMarker(new MarkerOptions()
+//					    .position(listingPosition)					 								    
+//					    .title("Some title here")
+//					    .snippet("Some description here")
+//					    .icon(defaultMarker));
+				//LatLng latLng = new LatLng(Do);
+				//CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+				//map.animateCamera(cameraUpdate);
+			} else {
+				drawMarker();
+				Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
+			}
+		
 	}
 
 	/*
@@ -180,6 +202,21 @@ public class MapDemoActivity extends FragmentActivity implements
 			Toast.makeText(getApplicationContext(),
 					"Sorry. Location services not available to you", Toast.LENGTH_LONG).show();
 		}
+	}
+	
+	private void drawMarker(){
+		Log.d("MapDemoActivity","reached drawMarker");
+	    SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+	    GoogleMap googleMap = fm.getMap();
+	    googleMap.clear();
+	    for(LongLatModel eachModel : model){
+	    	Log.d("MapDemoActivity","inside for loop drawMarker");
+	    LatLng currentPosition = new LatLng(Double.parseDouble(eachModel.getLatitude()),Double.parseDouble(eachModel.getLongitude()));
+	    googleMap.addMarker(new MarkerOptions()
+	    .position(currentPosition)
+	    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+	    .title(eachModel.getName()));
+	    }
 	}
 
 	// Define a DialogFragment that displays the error dialog

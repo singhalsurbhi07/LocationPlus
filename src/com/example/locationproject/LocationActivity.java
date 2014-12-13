@@ -80,6 +80,7 @@ public class LocationActivity extends Activity {
 	public void getKTopLocations(View v){
 		int kVal = Integer.parseInt(k.getText().toString());
 		Log.d(TAG,"value of k = "+kVal);
+		StaticReferenceDB.k = kVal;
 		String query = getQuery(kVal);
 		util.writeRequestToDownloads(query, sharedpreferences.getString("deviceName", "master"));
 		String uri = "file://"+Environment.getExternalStoragePublicDirectory(
